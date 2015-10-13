@@ -1,0 +1,23 @@
+{
+  "name": "variate-axon-js",
+  "version": "0.1.0",
+  "description": "",
+  "main": "variate.axon.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/VariateIO/axon-js.git"
+  },
+  "author": "Variate IO <info@variate.io>",
+  "license": "GPLv2",
+  "bugs": {
+    "url": "https://github.com/VariateIO/axon-js/issues"
+  },
+  "homepage": "https://github.com/VariateIO/axon-js",
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-awspublish": "~3.0.1"
+  }
+}

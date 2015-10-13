@@ -5,6 +5,7 @@ var git = require('gulp-git');
 var fs = require('fs');
 var path = require('path');
 var rename = require('gulp-rename');
+var minify = require('gulp-minify');
 
 var bowerConfig = JSON.parse(fs.readFileSync('./bower.json'));
 var version = bowerConfig.version;
@@ -30,6 +31,12 @@ gulp.task('build', [], function() {
   mkdirSync(outDir);
   
   gulp.src(bowerConfig.main)
+    .pipe(gulp.dest(outDir));
+});
+
+gulp.task('minify', [], function() {
+  gulp.src(bowerConfig.main)
+    .pipe(minify())
     .pipe(gulp.dest(outDir));
 });
 

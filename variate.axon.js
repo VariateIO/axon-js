@@ -7,6 +7,10 @@ $(function() {
   $.ajax({
     url: 'http://api.variate.io/'
   }).done(function(data) {
-    console.log(data);
+    var color = 'red';
+    if(data == 0) {
+      color = 'blue';
+    }
+    $('body').css('background-color', color);
   });
 });

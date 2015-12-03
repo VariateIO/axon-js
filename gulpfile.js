@@ -6,12 +6,15 @@ var fs = require('fs');
 var path = require('path');
 var rename = require('gulp-rename');
 var minify = require('gulp-minify');
+var webserver = require('gulp-webserver');
+var hostile = require('hostile');
 
 var bowerConfig = JSON.parse(fs.readFileSync('./bower.json'));
 var version = bowerConfig.version;
 
 var buildDir = './build/';
 var outDir = path.join(buildDir, version);
+var previewHost = 'axon.local.variate.io';
 
 var mkdirSync = function (path) {
   try {
@@ -21,11 +24,11 @@ var mkdirSync = function (path) {
   }
 }
 
-gulp.task('default', [], function() {
+gulp.task('default', ['preview'], function() {
 
 });
 
-gulp.task('build', [], function() {
+gulp.task('build', ['version', 'minify'], function() {
 
   mkdirSync(buildDir);
   mkdirSync(outDir);
@@ -44,7 +47,26 @@ gulp.task('version', [], function() {
   console.log(version);
 });
 
-gulp.task('publish-s3', [], function() {
+gulp.task('preview', ['build', 'hostfile'], function() {
+  gulp.src('.')
+    .pipe(webserver({
+      livereload: true,
+      host: previewHost
+    }));
+});
+
+gulp.task('hostfile', [], function(done) {
+  hostile.set('127.0.0.1', previewHost, function(error) {
+    if(error) {
+      console.error(error);
+    } else {
+      console.log('Set hostfile entry');
+    }
+    done();
+  });
+});
+
+gulp.task('publish-s3', ['build'], function() {
   var publisher = awspublish.create({
     params: {
       Bucket: 'variate'

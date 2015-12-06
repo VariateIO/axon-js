@@ -8,7 +8,7 @@ $(function() {
   var assignment = $.cookie(cookieName);
   if(!assignment) {
     $.ajax({
-      url: 'http://api.local.variate.io/'
+      url: 'http://api.local.variate.io:10000/'
     }).done(function(data) {
       assignment = data;
       $.cookie(cookieName, assignment);

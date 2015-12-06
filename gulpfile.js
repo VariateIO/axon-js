@@ -15,6 +15,7 @@ var version = bowerConfig.version;
 var buildDir = './build/';
 var outDir = path.join(buildDir, version);
 var previewHost = 'axon.local.variate.io';
+var previewPort = 9002;
 
 var mkdirSync = function (path) {
   try {
@@ -50,8 +51,9 @@ gulp.task('version', [], function() {
 gulp.task('preview', ['build', 'hostfile'], function() {
   gulp.src('.')
     .pipe(webserver({
-      livereload: true,
-      host: previewHost
+      livereload: 35739,
+      host: previewHost,
+      port: previewPort
     }));
 });
 

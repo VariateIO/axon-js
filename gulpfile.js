@@ -48,7 +48,7 @@ gulp.task('version', [], function() {
   console.log(version);
 });
 
-gulp.task('preview', ['build', 'hostfile'], function() {
+gulp.task('preview', ['build'], function() {
   gulp.src('.')
     .pipe(webserver({
       livereload: 35739,

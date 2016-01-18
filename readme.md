@@ -3,6 +3,7 @@
 
 ```
 npm install
-bower install
-gulp
+./node_modules/.bin/bower install
+[sudo] ./node_modules/.bin/gulp hostfile
+./node_modules/.bin/gulp
 ```
